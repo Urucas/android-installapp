@@ -1,0 +1,91 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="android-installapp">
+  <style>
+    .android-installapp{
+      color:#fff;
+      padding:0px;
+      margin:0px;
+      background:rgba(0,0,0,0.8);
+    }
+    .android-installapp a{
+      border:none;
+      color:#fff;
+      display:inline-block;
+      background:rgba(0,0,0,0);
+    }
+    .android-installapp-close {
+      font-size:1.1em;
+      font-family:Verdana;
+      padding:6px;
+      border:1px solid red;
+      float:left;
+      margin-top:10px;
+      margin-left:10px;
+    }
+    .android-installapp-use{
+      font-size:0.9em;
+      padding:2px;
+      border:1px solid red;
+      float:right;
+      font-family:Verdana;
+      margin-top:16px;
+      margin-right:10px;
+    }
+    .android-installapp-body {
+      display:block;
+      margin-left:auto;
+      margin-right:auto;
+      width:60%;
+      background:rgba(0,0,0,0);
+    }
+    .android-installapp-body p{
+      padding:8px;  
+      background:rgba(0,0,0,0);
+    }
+    .android-installapp-logo {
+      float:left;
+      width:48px;
+      height:48px;
+      margin:4px;
+      background:rgba(0,0,0,0);
+      border:none;
+    }
+  </style>
+  <template>
+    <div class="android-installapp">
+      <a class="android-installapp-close">X</a>
+      <a class="android-installapp-use">Usar</a>
+      <div class="android-installapp-body">
+        <img class="android-installapp-logo" src="{info.logo}" />
+        <p class="android-installapp-package-name">Usa la app de {info.name}</p>
+        <div class="android-installapp-stars"></div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+  </template>
+</dom-module>
+<script>
+(function() {
+  Polymer({
+    is: 'android-installapp',
+
+    properties: {
+      info: {
+        name: "Wifime(Beta)",
+        logo: 'https://lh6.ggpht.com/_b62klCs1JpdxBjt4nN3MOmHfVSaiHOPFKqVdB9Efgybe1FarmZn9Q92qLDdxGMjOg=w300'
+      }
+    }
+  });
+})();
+</script>
