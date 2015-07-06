@@ -14,6 +14,9 @@ Polymer Android Install App Notification
 <img src="https://raw.githubusercontent.com/Urucas/android-installapp/master/screen.png" />
 
 
+
+
+
 **Related**
 
 [https://github.com/Urucas/googleplay-app-info-api](https://github.com/Urucas/googleplay-app-info-api)
