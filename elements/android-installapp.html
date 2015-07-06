@@ -86,10 +86,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div id="android-installapp-main" class="android-installapp">
       <div>
       <a class="android-installapp-close"><i class="fa fa-close"></i></a>
-      <a class="android-installapp-use" href="{{url}}" target="_blank">Usar</a>
+      <a class="android-installapp-use" href="{{url}}" target="_blank"></a>
       <div class="android-installapp-body">
         <img class="android-installapp-logo" src="{{logo}}" />
-        <p class="android-installapp-package-name">Usa la app de <span id="pkg"></span>!</p>
+        <p class="android-installapp-package-name"></p>
         <div class="android-installapp-stars">
           <a class="android-installapp-star star1"><i class="fa fa-star"></i></a>
           <a class="android-installapp-star star2"><i class="fa fa-star"></i></a>
@@ -108,9 +108,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   Polymer({
     is: 'android-installapp',
     properties: {
-      pkg: String
+      pkg: String, 
+      locale: String
     },
     ready: function(){
+      this.locale = this.locale || "es";
       var gpai = require('gpai');
       var obj = this;
       gpai({id:this.pkg}).then(function(info){
