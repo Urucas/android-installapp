@@ -9,69 +9,96 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="stylesheet" href="../bower_components/fontawesome/css/font-awesome.css">
 
 <dom-module id="android-installapp">
   <style>
+    #android-installapp-main{
+      position: fixed;
+      width: 100%;
+      bottom: 0px;  
+    }
     .android-installapp{
-      color:#fff;
       padding:0px;
       margin:0px;
-      background:rgba(0,0,0,0.8);
+    }
+    .android-installapp div:first-child{ 
+      background:rgba(55,55,55,0.9);
     }
     .android-installapp a{
-      border:none;
-      color:#fff;
       display:inline-block;
-      background:rgba(0,0,0,0);
+      cursor:pointer;
     }
     .android-installapp-close {
       font-size:1.1em;
       font-family:Verdana;
       padding:6px;
-      border:1px solid red;
       float:left;
       margin-top:10px;
       margin-left:10px;
+      color:#f7f7f7;
     }
     .android-installapp-use{
       font-size:0.9em;
-      padding:2px;
-      border:1px solid red;
+      padding:8px;
       float:right;
       font-family:Verdana;
       margin-top:16px;
       margin-right:10px;
+      color:#f7f7f7;
+      border:1px solid #000;
+      border-radius:5px;
+      text-decoration:none;
+      background:#222;
     }
     .android-installapp-body {
       display:block;
       margin-left:auto;
       margin-right:auto;
       width:60%;
-      background:rgba(0,0,0,0);
     }
     .android-installapp-body p{
       padding:8px;  
-      background:rgba(0,0,0,0);
+      font-family:Verdana;
+      color:#f7f7f7;
+      padding-bottom:1px;
     }
     .android-installapp-logo {
       float:left;
       width:48px;
       height:48px;
       margin:4px;
-      background:rgba(0,0,0,0);
       border:none;
+      padding: 4px 4px;
+    }
+    .android-installapp-stars {
+    }
+    .android-installapp-star {
+      font-size:0.8em;
+      color:#999;
+    }
+    .android-installapp-star-enable {
+      color:#F5F253;
     }
   </style>
   <template>
-    <div class="android-installapp">
-      <a class="android-installapp-close">X</a>
-      <a class="android-installapp-use">Usar</a>
+    <div id="android-installapp-main" class="android-installapp">
+      <div>
+      <a class="android-installapp-close"><i class="fa fa-close"></i></a>
+      <a class="android-installapp-use" href="{{url}}" target="_blank">Usar</a>
       <div class="android-installapp-body">
-        <img class="android-installapp-logo" src="{info.logo}" />
-        <p class="android-installapp-package-name">Usa la app de {info.name}</p>
-        <div class="android-installapp-stars"></div>
+        <img class="android-installapp-logo" src="{{logo}}" />
+        <p class="android-installapp-package-name">Usa la app de <span id="pkg"></span></p>
+        <div class="android-installapp-stars">
+          <a class="android-installapp-star star1"><i class="fa fa-star"></i></a>
+          <a class="android-installapp-star star2"><i class="fa fa-star"></i></a>
+          <a class="android-installapp-star star3"><i class="fa fa-star"></i></a>
+          <a class="android-installapp-star star4"><i class="fa fa-star"></i></a>
+          <a class="android-installapp-star star5"><i class="fa fa-star"></i></a>
+        </div>
       </div>
       <div style="clear:both"></div>
+      </div>
     </div>
   </template>
 </dom-module>
@@ -79,11 +106,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 (function() {
   Polymer({
     is: 'android-installapp',
-
     properties: {
-      info: {
-        name: "Wifime(Beta)",
-        logo: 'https://lh6.ggpht.com/_b62klCs1JpdxBjt4nN3MOmHfVSaiHOPFKqVdB9Efgybe1FarmZn9Q92qLDdxGMjOg=w300'
+      info: Object
+    },
+    ready: function(){
+      // example
+      this.logo = "https://lh6.ggpht.com/_b62klCs1JpdxBjt4nN3MOmHfVSaiHOPFKqVdB9Efgybe1FarmZn9Q92qLDdxGMjOg=w300";
+      this.name = "Wifime (Beta)";
+
+      var el = this.$$("#pkg");
+      el.innerText = this.name;
+      this.stars = 3;
+      this.url = "https://play.google.com/store/apps/details?id=com.urucas.wifime";
+
+      for(var i=1;i<=5;i++) {
+        if(i>this.stars) {
+          break;
+        }
+        var star = this.$$(".star"+i);
+        star.className = star.className + " android-installapp-star-enable";
+      }
+
+      this.$$('.android-installapp-close').onclick = function() {
+        var els = document.getElementsByTagName('android-installapp');
+        for(var i=0;i<els.length;i++) els[i].style.display = "none";
       }
     }
   });
