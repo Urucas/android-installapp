@@ -107,9 +107,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   Polymer({
     is: 'android-installapp',
     properties: {
-      info: Object
+      pkg: String
     },
     ready: function(){
+      console.log(this.pkg);
+      // TODO - integrate with gapi.js - https://github.com/Urucas/googleplay-app-info-api
+      
       // example
       this.logo = "https://lh6.ggpht.com/_b62klCs1JpdxBjt4nN3MOmHfVSaiHOPFKqVdB9Efgybe1FarmZn9Q92qLDdxGMjOg=w300";
       this.name = "Wifime (Beta)";
