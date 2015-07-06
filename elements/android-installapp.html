@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="stylesheet" href="../bower_components/fontawesome/css/font-awesome.css">
+<script src="../dist/gpai.js"></script>
 
 <dom-module id="android-installapp">
   <style>
@@ -88,7 +89,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <a class="android-installapp-use" href="{{url}}" target="_blank">Usar</a>
       <div class="android-installapp-body">
         <img class="android-installapp-logo" src="{{logo}}" />
-        <p class="android-installapp-package-name">Usa la app de <span id="pkg"></span></p>
+        <p class="android-installapp-package-name">Usa la app de <span id="pkg"></span>!</p>
         <div class="android-installapp-stars">
           <a class="android-installapp-star star1"><i class="fa fa-star"></i></a>
           <a class="android-installapp-star star2"><i class="fa fa-star"></i></a>
@@ -110,30 +111,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       pkg: String
     },
     ready: function(){
-      console.log(this.pkg);
-      // TODO - integrate with gapi.js - https://github.com/Urucas/googleplay-app-info-api
-      
-      // example
-      this.logo = "https://lh6.ggpht.com/_b62klCs1JpdxBjt4nN3MOmHfVSaiHOPFKqVdB9Efgybe1FarmZn9Q92qLDdxGMjOg=w300";
-      this.name = "Wifime (Beta)";
+      var gpai = require('gpai');
+      var obj = this;
+      gpai({id:this.pkg}).then(function(info){
+        obj.logo = info.logo;
+        obj.name = info.name;
+        
+        var el = obj.$$("#pkg");
+        el.innerText = this.name;
+        obj.stars = parseInt(info.stars);
+        obj.url = info.url;
 
-      var el = this.$$("#pkg");
-      el.innerText = this.name;
-      this.stars = 3;
-      this.url = "https://play.google.com/store/apps/details?id=com.urucas.wifime";
-
-      for(var i=1;i<=5;i++) {
-        if(i>this.stars) {
-          break;
+        for(var i=1;i<=5;i++) {
+          if(i>obj.stars) {
+            break;
+          }
+          var star = obj.$$(".star"+i);
+          star.className = star.className + " android-installapp-star-enable";
         }
-        var star = this.$$(".star"+i);
-        star.className = star.className + " android-installapp-star-enable";
-      }
 
-      this.$$('.android-installapp-close').onclick = function() {
-        var els = document.getElementsByTagName('android-installapp');
-        for(var i=0;i<els.length;i++) els[i].style.display = "none";
-      }
+        obj.$$('.android-installapp-close').onclick = function() {
+          var els = document.getElementsByTagName('android-installapp');
+          for(var i=0;i<els.length;i++) els[i].style.display = "none";
+        }
+      });
     }
   });
 })();
