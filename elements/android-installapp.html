@@ -121,16 +121,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       var gpai = require('gpai');
       gpai({id:this.pkg}).then(function(info){
-        console.log(info);
         obj.$$(".locale-use").innerText = obj.localeStrings['use'];
         obj.logo = info.logo;
         obj.name = info.name;
-        
         var el = obj.$$(".locale-use_desc");
         el.innerText = obj.localeStrings["use_desc"].replace(/{{id}}/ig, obj.name);
         obj.stars = parseInt(info.stars);
         obj.url = info.url;
-
         for(var i=1;i<=5;i++) {
           if(i>obj.stars) {
             break;
@@ -138,7 +135,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           var star = obj.$$(".star"+i);
           star.className = star.className + " android-installapp-star-enable";
         }
-
         obj.$$('.android-installapp-close').onclick = function() {
           var els = document.getElementsByTagName('android-installapp');
           for(var i=0;i<els.length;i++) els[i].style.display = "none";
