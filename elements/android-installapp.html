@@ -10,7 +10,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="stylesheet" href="../bower_components/fontawesome/css/font-awesome.css">
-<script src="../dist/gpai.js"></script>
+<script src="https://cdn.rawgit.com/Urucas/gpai/master/dist/gpai.js"></script>
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
 <dom-module id="android-installapp">
   <style>
@@ -86,10 +87,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div id="android-installapp-main" class="android-installapp">
       <div>
       <a class="android-installapp-close"><i class="fa fa-close"></i></a>
-      <a class="android-installapp-use" href="{{url}}" target="_blank">Usar</a>
+      <a class="android-installapp-use" href="{{url}}" target="_blank"><span class="locale-use"></span></a>
       <div class="android-installapp-body">
         <img class="android-installapp-logo" src="{{logo}}" />
-        <p class="android-installapp-package-name">Usa la app de <span id="pkg"></span>!</p>
+        <p class="android-installapp-package-name"><span class="locale-use_desc"></span></p>
         <div class="android-installapp-stars">
           <a class="android-installapp-star star1"><i class="fa fa-star"></i></a>
           <a class="android-installapp-star star2"><i class="fa fa-star"></i></a>
@@ -112,16 +113,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       locale: String
     },
     ready: function(){
-      this.locale = this.locale || "es";
-      var gpai = require('gpai');
       var obj = this;
+
+      obj.locale = obj.locale || "es";
+      var locale_path = ["elements/locale/", obj.locale, ".json"].join("");
+      jQuery.ajax({url:locale_path, async:false, success: function(data){ obj.localeStrings = JSON.parse(data); }});
+      
+      var gpai = require('gpai');
       gpai({id:this.pkg}).then(function(info){
         console.log(info);
+        obj.$$(".locale-use").innerText = obj.localeStrings['use'];
         obj.logo = info.logo;
         obj.name = info.name;
         
-        var el = obj.$$("#pkg");
-        el.innerText = obj.name;
+        var el = obj.$$(".locale-use_desc");
+        el.innerText = obj.localeStrings["use_desc"].replace(/{{id}}/ig, obj.name);
         obj.stars = parseInt(info.stars);
         obj.url = info.url;
 
