@@ -9,7 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="stylesheet" href="../bower_components/fontawesome/css/font-awesome.css">
+<link rel="stylesheet" href="../bower_components/components-font-awesome/css/font-awesome.css">
 <script src="https://cdn.rawgit.com/Urucas/gpai/master/dist/gpai.js"></script>
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
@@ -117,8 +117,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       obj.locale = obj.locale || "es";
       var locale_path = ["elements/locale/", obj.locale, ".json"].join("");
-      jQuery.ajax({url:locale_path, async:false, success: function(data){ obj.localeStrings = JSON.parse(data); }});
-      
+      jQuery.ajax({url:locale_path, async:false, success: function(data){ obj.localeStrings = data }, dataType:'json'});
       var gpai = require('gpai');
       gpai({id:this.pkg}).then(function(info){
         obj.$$(".locale-use").innerText = obj.localeStrings['use'];
