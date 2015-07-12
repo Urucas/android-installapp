@@ -1,6 +1,11 @@
 # android-installapp
 Polymer Android Install App Notification 
 
+#Install
+```bash
+bower install --save android-installapp
+```
+
 #Usage
 ```html
 <head>
