@@ -120,6 +120,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var locale_path = ["elements/locale/", obj.locale, ".json"].join("");
       jQuery.ajax({url:locale_path, async:false, success: function(data){ obj.localeStrings = JSON.parse(data); }});
       
+      console.log(obj.localeStrings);
       var gpai = require('gpai');
       gpai({id:this.pkg}).then(function(info){
         obj.$$(".locale-use").innerText = obj.localeStrings['use'];
