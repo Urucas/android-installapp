@@ -253,3 +253,13 @@ footer {
     color:#444;
   }
 }
+
+.demo {
+  width:250px;
+  background:url("../google-nexus-5.svg") no-repeat;
+  background-size: 700px 450px;
+  height:450px;
+  background-position:-100px 0px;
+  border:1px solid #f00;
+}
+
