@@ -118,7 +118,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       console.log(this.pkg);
       obj.locale = obj.locale || "es";
       var locale_path = ["http://urucas.github.io/android-installapp/elements/locale/", obj.locale, ".json"].join("");
-      jQuery.ajax({url:locale_path, async:false, success: function(data){ obj.localeStrings = JSON.parse(data); }});
+      jQuery.ajax({url:locale_path, async:false, success: function(data){ obj.localeStrings = data; }, dataType:'json'});
       
       console.log(obj.localeStrings);
       var gpai = require('gpai');
