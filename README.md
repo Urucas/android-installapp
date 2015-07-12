@@ -15,12 +15,11 @@ attributes
   * pkg: package name id,
   * locale: language localization iso code. Supports: en, es. 
 
-<img src="https://raw.githubusercontent.com/Urucas/android-installapp/master/screen.png" />
+**Demo** 
 
-
-
+[http://urucas.github.io/android-installapp/](http://urucas.github.io/android-installapp/)
 
 
 **Related**
 
-[https://github.com/Urucas/googleplay-app-info-api](https://github.com/Urucas/googleplay-app-info-api)
+[```gpai```](https://github.com/Urucas/gpai) browser API.
