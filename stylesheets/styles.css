@@ -255,11 +255,21 @@ footer {
 }
 
 .demo {
-  width:250px;
+  width:350px;
   background:url("../google-nexus-5.svg") no-repeat;
-  background-size: 700px 450px;
-  height:450px;
-  background-position:-100px 0px;
-  border:1px solid #f00;
+  background-size: 1100px 600px;
+  height:600px;
+  background-position:-200px 0px;
+  border:none;
+}
+
+.demo iframe{
+  margin:0px;
+  margin-top:48px;
+  margin-left:51px;
+  width:273px;
+  height:486px;
+  padding:0px;
+  border:none;
 }
 

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="import" href="elements/android-installapp.html">
+  <script src="https://cdn.rawgit.com/Urucas/search2vars/master/dist/search2vars.js"></script>
+  <style>body{margin:0px; padding:0px; font-size:0.7em !important;}</style>
+</head>
+
+<body>
+    <div id="container"></div>
+   <script>
+  
+   (function createElement(l) {
+     var s2v = require('search2vars');
+     var vars = s2v(l.search);
+     var el = [
+      '<android-installapp',
+      'pkg='+vars.id,
+      'locale='+vars.locale,
+      '>',
+      '</android-installapp>'
+     ].join(" ");
+     document.getElementById("container").innerHTML=el;
+   })(document.location);
+   </script>
+</body>
+</html>

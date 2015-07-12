@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -50,11 +51,29 @@
 <li>locale: language localization iso code. Supports: en, es. </li>
 </ul>
 
-<div class="demo-play"></div>
-<div class="demo">
-  <android-installapp pkg="com.urucas.wifime" locale="es"></android-installapp>
+<div class="demo-play">
+<ul>
+  <li><label>Package id: <input type="text" id="el-id" value="com.urucas.wifime" placeholder="com.urucas.wifime" /></label>
+  <li><label>Locale: <select id="el-locale"><option value="en">English</option><option value="es">Espa&ntilde;ol</option></select></label>
+  <li><label>&nbsp;</label><button onclick="showMe();">Show me!</button></li>
+</ul>
 </div>
 
+
+<script>
+function showMe(){
+  var id = document.getElementById("el-id").value;
+  var locale = document.getElementById("el-locale").value;
+  var url = 'frame.html?id='+id+"&locale="+locale;
+  document.getElementsByTagName('iframe')[0].setAttribute('src', url);
+};
+</script>
+
+<div class="demo">
+  <iframe src="" frameborder="none"></iframe>
+</div>
+
+<script>showMe();</script>
 </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/Urucas">Urucas</a></p>
